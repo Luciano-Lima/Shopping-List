@@ -23,5 +23,17 @@ const errorMsg = () => {
 	}
 }
 
+// Create a new list item
+const createLiElement = () => {
+	const li = document.createElement('li') // Create a new list item element
+	li.textContent = itemInput.value // Set its text content to the input value
+	itemList.appendChild(li) // Append it to the list
+	itemInput.value = '' // Clear the input field
+	const btn = createButton('remove-item btn-link text-red') // Create a remove button
+	li.appendChild(btn) // Append the button to the list item
+	showUI() // Show UI elements
+	console.log('calling showUI from createLiElement') // Log a message
+}
+
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
