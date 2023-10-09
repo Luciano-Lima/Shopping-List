@@ -65,6 +65,27 @@ const clearItem = () => {
 	})
 }
 
+// Filter items based on user input
+const filterItems = () => {
+	filter.addEventListener('input', (e) => {
+		let filterInputValue = e.target.value.toLowerCase() // Get user input, convert to lowercase
+		const itemListTextContent = document.querySelectorAll('li') // Get all list items
+
+		itemListTextContent.forEach((item) => {
+			const items = item.textContent.toLowerCase().trim('').split(' ') // Get individual words in list item text
+			const matchingItems = items.filter((char) => char.includes(filterInputValue)) // Filter matching words
+
+			if (matchingItems.length > 0) {
+				item.style.display = 'flex' // Show the item if there are matching words
+			} else {
+				item.style.display = 'none' // Hide the item if there are no matching words
+
+				// hideUI() // Hide UI elements if there are no matching items
+			}
+		})
+	})
+}
+
 // Hide UI elements
 const hideUI = () => {
 	filter.style.display = 'none' // Hide the filter input
@@ -88,6 +109,8 @@ const clearAllItems = () => {
 }
 
 clearItem()
+filterItems()
 
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
+clearAllBtn.addEventListener('click', clearAllItems) // Listen for clear all button click
