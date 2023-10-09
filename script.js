@@ -65,5 +65,20 @@ const clearItem = () => {
 	})
 }
 
+// Hide UI elements
+const hideUI = () => {
+	filter.style.display = 'none' // Hide the filter input
+	clearBtn.style.display = 'none' // Hide the clear button
+}
+
+// Show UI elements
+const showUI = () => {
+	itemList.style.display = 'flex' // Show the list
+	filter.style.display = 'block' // Show the filter input
+	clearAllBtn.style.display = 'block' // Show the clear all button
+}
+
+clearItem()
+
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
