@@ -52,5 +52,18 @@ const createIcon = (classes) => {
 	return i // Return the icon element
 }
 
+// Remove a list item when the remove button is clicked
+const clearItem = () => {
+	itemList.addEventListener('click', (e) => {
+		if (e.target.classList.contains('fa-solid')) {
+			e.target.parentNode.parentNode.remove() // Remove the list item
+		}
+		if (itemList.firstElementChild === null) {
+			console.log(itemList.firstElementChild) // Log a message if the list is empty
+			hideUI() // Hide UI elements if there are no items in the list
+		}
+	})
+}
+
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
