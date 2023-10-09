@@ -44,5 +44,13 @@ const createButton = (classes) => {
 	return btn // Return the button element
 }
 
+
+// Create an icon element
+const createIcon = (classes) => {
+	const i = document.createElement('i') // Create an icon element
+	i.className = classes // Set its class name
+	return i // Return the icon element
+}
+
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
