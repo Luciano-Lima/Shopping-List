@@ -78,6 +78,15 @@ const showUI = () => {
 	clearAllBtn.style.display = 'block' // Show the clear all button
 }
 
+// Clear all items in the list
+const clearAllItems = () => {
+	const items = itemList.querySelectorAll('li') // Get all list items
+	items.forEach((item) => {
+		item.remove() // Remove each list item
+	})
+	hideUI() // Hide UI elements
+}
+
 clearItem()
 
 // Event listeners
