@@ -35,5 +35,14 @@ const createLiElement = () => {
 	console.log('calling showUI from createLiElement') // Log a message
 }
 
+// Create a button element
+const createButton = (classes) => {
+	const btn = document.createElement('button') // Create a button element
+	btn.className = classes // Set its class name
+	const icon = createIcon('fa-solid fa-xmark') // Create a remove icon
+	btn.appendChild(icon) // Append the icon to the button
+	return btn // Return the button element
+}
+
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
