@@ -13,7 +13,6 @@ const getInputValue = (e) => {
 	errorMsg() // Check for errors before proceeding
 }
 
-
 // Show an error message if the input is empty
 const errorMsg = () => {
 	if (itemInput.value === '') {
@@ -31,8 +30,8 @@ const createLiElement = () => {
 	itemInput.value = '' // Clear the input field
 	const btn = createButton('remove-item btn-link text-red') // Create a remove button
 	li.appendChild(btn) // Append the button to the list item
+	saveItemToLocalStorage(li.textContent)
 	showUI() // Show UI elements
-	console.log('calling showUI from createLiElement') // Log a message
 }
 
 // Create a button element
@@ -43,7 +42,6 @@ const createButton = (classes) => {
 	btn.appendChild(icon) // Append the icon to the button
 	return btn // Return the button element
 }
-
 
 // Create an icon element
 const createIcon = (classes) => {
@@ -108,9 +106,43 @@ const clearAllItems = () => {
 	hideUI() // Hide UI elements
 }
 
+//Save new items to localStorage
+const saveItemToLocalStorage = (item) => {
+	let items
+	// Check if there are already items in localStorage
+	if (localStorage.getItem('items') === null) {
+		items = []
+	} else {
+		items = JSON.parse(localStorage.getItem('items'))
+	}
+	//Add new item to localStorage
+	items.push(item)
+	//Save the updated item list back to localStorage
+	localStorage.setItem('items', JSON.stringify(items))
+}
+
+//Load item from localStorage to the Shopping List
+const loadItemsFromLocalStorage = () => {
+	let items
+	if (localStorage.getItem('items') === null) {
+		items = []
+	} else {
+		items = JSON.parse(localStorage.getItem('items'))
+	}
+	items.forEach((item) => {
+		const li = document.createElement('li')
+		li.textContent = item
+		itemList.appendChild(li)
+
+		const btn = createButton('remove-item btn-link text-red')
+		li.appendChild(btn)
+	})
+}
+
 clearItem()
 filterItems()
 
 // Event listeners
 submitBtn.addEventListener('click', getInputValue) // Listen for submit button click
 clearAllBtn.addEventListener('click', clearAllItems) // Listen for clear all button click
+addEventListener('DOMContentLoaded', () => loadItemsFromLocalStorage()) // Load items form local Storage
