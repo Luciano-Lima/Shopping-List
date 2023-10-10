@@ -103,6 +103,7 @@ const clearAllItems = () => {
 	items.forEach((item) => {
 		item.remove() // Remove each list item
 	})
+	clearItemsFromLocalStorage()
 	hideUI() // Hide UI elements
 }
 
@@ -137,6 +138,10 @@ const loadItemsFromLocalStorage = () => {
 		const btn = createButton('remove-item btn-link text-red')
 		li.appendChild(btn)
 	})
+}
+
+const clearItemsFromLocalStorage = () => {
+	localStorage.clear('items')
 }
 
 clearItem()
